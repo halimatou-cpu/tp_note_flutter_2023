@@ -31,19 +31,14 @@ class MyApp extends StatelessWidget {
               color: Colors.white,
             ),
           )),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  MyHomePage({super.key});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   List<String> availableChoices = [
     "petanque",
     "cinema",
@@ -54,6 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
     "programming",
   ];
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   List<String> selectedChoices = [];
 
   @override
@@ -66,15 +66,30 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Expanded(
               flex: 2,
-              child: Header(selectedChoices: availableChoices),
-              //child: Header(selectedChoices: []),
+              //child: Header(selectedChoices: widget.availableChoices),
+              child: Header(selectedChoices: selectedChoices),
             ),
             Expanded(
-              child: Footer(availableChoices: availableChoices),
+              child: Footer(
+                availableChoices: widget.availableChoices,
+                onChoiceClick: _onChoiceClick,
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _onChoiceClick(String choice) {
+    setState(() {
+      if (selectedChoices.contains(choice)) {
+        print("*****i was there*****");
+        selectedChoices.remove(choice);
+      } else {
+        print("#####i was not there#####");
+        selectedChoices.add(choice);
+      }
+    });
   }
 }

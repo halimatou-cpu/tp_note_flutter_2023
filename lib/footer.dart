@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tp_note/choice_item.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({Key? key, required this.availableChoices}) : super(key: key);
+  const Footer({Key? key, required this.availableChoices, required this.onChoiceClick}) : super(key: key);
 
   final List<String> availableChoices;
+  final void Function(String) onChoiceClick;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class Footer extends StatelessWidget {
               ChoiceItem(
                 itemText: choice,
                 color: Colors.orangeAccent,
+                onPressed: () => onChoiceClick(choice),
               ),
           ).toList(),
         ),
