@@ -66,19 +66,23 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Expanded(
               flex: 2,
-              //child: Header(selectedChoices: widget.availableChoices),
               child: Header(selectedChoices: selectedChoices),
             ),
             Expanded(
               child: Footer(
                 availableChoices: widget.availableChoices,
                 onChoiceClick: _onChoiceClick,
+                isChoosen: _isChoosen,
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  bool _isChoosen(choice) {
+    return selectedChoices.contains(choice);
   }
 
   void _onChoiceClick(String choice) {
