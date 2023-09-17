@@ -5,20 +5,21 @@ class ChoiceItem extends StatelessWidget {
       : super(key: key);
 
   final String itemText;
-  Color? color = Colors.grey;
+  Color? color;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(15.0),
+    return Container(
+      decoration: BoxDecoration(
+        color: color ?? Colors.grey,
+        borderRadius: BorderRadius.circular(20.0)
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10.0,
+          vertical: 5.0,
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-        alignment: Alignment.center,
         child: Text(
           itemText,
           style: Theme.of(context).textTheme.bodyMedium,
@@ -27,14 +28,3 @@ class ChoiceItem extends StatelessWidget {
     );
   }
 }
-
-/*
-  return Container(
-      height: 30,
-      width: 30,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.red,
-      ),
-    );
-*/

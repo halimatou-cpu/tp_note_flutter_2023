@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 
-class Header extends StatelessWidget {
-  const Header({Key? key, required this.choices}) : super(key: key);
+import 'choice_item.dart';
 
-  final List<String> choices;
+class Header extends StatelessWidget {
+  const Header({Key? key, required this.selectedChoices}) : super(key: key);
+
+  final List<String> selectedChoices;
 
   @override
   Widget build(BuildContext context) {
-    if (choices.isEmpty) {
-      return Center(
-          child: Text(
-            "Cliquez sur les choix ci-dessous",
-            style: Theme
-                .of(context)
-                .textTheme
-                .bodyLarge,
-          )
+    if (selectedChoices.isEmpty) {
+      return Container(
+        color: Colors.deepPurpleAccent,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Vos choix: ",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              Text(
+                "Cliquez sur les choix en dessous !",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ],
+          ),
+        ),
       );
     }
 
@@ -23,22 +35,26 @@ class Header extends StatelessWidget {
       color: Colors.deepPurpleAccent,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Container(
-          color: Colors.pink,
-          child: Column(
-            children: [
-              Text(
-                "Vos choix: ",
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .bodyLarge,
-              )
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Vos choix: ",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            Wrap(
+              direction: Axis.horizontal,
+              spacing: 15, // horizontal spacing
+              runSpacing: 5, // vertical spacing
+              children: selectedChoices.map((choice) =>
+                  ChoiceItem(
+                    itemText: choice,
+                  ),
+              ).toList(),
+            ),
+          ],
         ),
       ),
     );
   }
-
 }

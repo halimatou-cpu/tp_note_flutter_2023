@@ -2,27 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:tp_note/choice_item.dart';
 
 class Footer extends StatelessWidget {
-  Footer({Key? key}) : super(key: key);
+  const Footer({Key? key, required this.availableChoices}) : super(key: key);
 
-  List<String> choices = [
-    "cinema",
-    "petanque",
-    "fitness",
-    "League Of Legend",
-    "basket",
-    "shopping",
-    "programming",
-  ];
+  final List<String> availableChoices;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Container(
-        color: Colors.white,
-        child: ChoiceItem(
-          itemText: choices[0],
-          color: Colors.orangeAccent,
+    return Container(
+      color: Colors.white70,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Wrap(
+          direction: Axis.horizontal,
+          spacing: 15, // horizontal spacing
+          runSpacing: 5, // vertical spacing
+          children: availableChoices.map((choice) =>
+              ChoiceItem(
+                itemText: choice,
+                color: Colors.orangeAccent,
+              ),
+          ).toList(),
         ),
       ),
     );
