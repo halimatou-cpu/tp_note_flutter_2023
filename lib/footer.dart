@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tp_note/choice_item.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({Key? key, required this.availableChoices, required this.onChoiceClick, required this.isChoosen}) : super(key: key);
+  const Footer({
+    Key? key,
+    required this.availableChoices,
+    required this.onChoiceClick,
+    required this.isChoosen,
+  }) : super(key: key);
 
   final List<String> availableChoices;
   final void Function(String) onChoiceClick;
@@ -18,13 +23,15 @@ class Footer extends StatelessWidget {
           direction: Axis.horizontal,
           spacing: 15, // horizontal spacing
           runSpacing: 5, // vertical spacing
-          children: availableChoices.map((choice) =>
-              ChoiceItem(
-                itemText: choice,
-                color: isChoosen(choice) ? Colors.orangeAccent : null,
-                onPressed: () => onChoiceClick(choice),
-              ),
-          ).toList(),
+          children: availableChoices
+              .map(
+                (choice) => ChoiceItem(
+                  itemText: choice,
+                  color: isChoosen(choice) ? Colors.orangeAccent : null,
+                  onPressed: () => onChoiceClick(choice),
+                ),
+              )
+              .toList(),
         ),
       ),
     );

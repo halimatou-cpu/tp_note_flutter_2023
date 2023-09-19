@@ -14,23 +14,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter TP noté',
+      title: 'Flutter TP note',
       theme: ThemeData(
-          useMaterial3: true,
-          textTheme: const TextTheme(
-            bodySmall: TextStyle(
-              fontSize: 18,
-            ),
-            bodyMedium: TextStyle(
-              fontSize: 24,
-              color: Colors.white,
-            ),
-            bodyLarge: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          )),
+        useMaterial3: true,
+        textTheme: const TextTheme(
+          bodySmall: TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 24,
+            color: Colors.white,
+          ),
+          bodyLarge: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({super.key});
 
-  List<String> availableChoices = [
+  final List<String> availableChoices = [
     "petanque",
     "cinema",
     "fitness",
@@ -59,7 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -88,10 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onChoiceClick(String choice) {
     setState(() {
       if (selectedChoices.contains(choice)) {
-        print("*****i was there*****");
         selectedChoices.remove(choice);
       } else {
-        print("#####i was not there#####");
         selectedChoices.add(choice);
       }
     });
